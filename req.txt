@@ -1,0 +1,14 @@
+librosa
+numpy
+json
+csv
+os
+shutil
+pandas
+pickle
+RandomForestRegressor
+train_test_split
+
+customtkinter
+tkinter
+json
