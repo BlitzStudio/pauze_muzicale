@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
+import Header from "./components/Header.jsx";
 
-const App = function () {
+const App = function (props) {
   return (
     <>
       <Navbar />
-      <Routes></Routes>
+      <Header />
     </>
   );
 };

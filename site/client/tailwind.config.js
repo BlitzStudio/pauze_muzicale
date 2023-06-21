@@ -2,7 +2,9 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
+
     extend: {
       fontFamily: {
         Alkatra: ["Alkatra", "sans-serif"],
@@ -15,6 +17,11 @@ export default {
         secondary: "#F7EBE8",
         reading: "#FFFD3",
         accent: "#ADB6C4",
+        richBlack: "#000814",
+        oxfordBlue: "#001d3d",
+        yaleBlue: "#003566",
+        mikadoYellow: "#ffc300",
+        gold: "#ffd60a"
       },
     },
   },
