@@ -8,8 +8,44 @@
   /* outline: 1px solid red;   */
 }
 
-#modal {
-  display: none;
+@keyframes animateGradient {
+  0% {
+    background-position: 0% 55%;
+  }
+  50% {
+    background-position: 100% 45%;
+  }
+  100% {
+    background-position: 0% 55%;
+  }
+}
+
+@layer components {
+  .bgBlur-md {
+    @apply bg-white/30 backdrop-blur-md;
+  }
+  .gradientBgLight {
+    background-image: linear-gradient(
+      105deg,
+      #eeabfe 0%,
+      #b8b8ff 12%,
+      #ffeedd 56%,
+      #7fc6ff 100%
+    );
+    background-size: 400% 600%;
+    animation: animateGradient 20s ease infinite;
+  }
+  .gradientBgDark {
+    background-image: linear-gradient(
+      105deg,
+      #3a0ca3 0%,
+      #4895ef 12%,
+      #b5179e 56%,
+      #4cc9f0 100%
+    );
+    background-size: 400% 600%;
+    animation: animateGradient 20s ease infinite;
+  }
 }
 
 .headerImage {

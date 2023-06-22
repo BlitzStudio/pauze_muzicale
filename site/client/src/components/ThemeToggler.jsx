@@ -21,7 +21,7 @@ const ThemeToggler = () => {
       </div>
       <div
         id="dark_btn"
-        className="mx-3 rounded-full fill-[#94a3b8] p-[4px]  hover:bg-white/20 hover:fill-white"
+        className="mx-3 rounded-full fill-[#dce7f7] p-[4px]  hover:bg-white/20 hover:fill-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
