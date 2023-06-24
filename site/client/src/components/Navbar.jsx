@@ -14,6 +14,9 @@ export default function NavBar() {
   };
   useEffect(() => {
     window.addEventListener("scroll", handelScroll);
+    return () => {
+      window.removeEventListener("scroll", handelScroll);
+    };
   }, []);
   return (
     <nav className="fixed top-0 w-[100vw] bg-transparent px-2 py-2 font-Nunito text-lg text-black  dark:text-white">

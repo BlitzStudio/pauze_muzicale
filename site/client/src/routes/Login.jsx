@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center  bg-login1 bg-cover bg-center">
       <div
-        className="items center m-2 flex h-[49vh] max-w-[340px] flex-col 
+        className="items center m-2 flex h-[430px] max-w-[340px] flex-col 
       items-center  overflow-hidden rounded-lg  bg-white/20 text-center text-black backdrop-blur-md "
       >
         <ArrowBack className="m-1 h-auto w-[24px] self-start rounded-full fill-black hover:bg-black/20" />
