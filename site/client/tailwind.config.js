@@ -12,6 +12,10 @@ export default {
         Nunito: ["Nunito", "sans-serif"],
         DancingScript: ["Dancing Script", "cursive"],
       },
+      backgroundImage: {
+        'login1': "url(src/imgs/login-1.jpg)",
+        'login2': "url(src/imgs/login-2.jpg)",
+      },
       colors: {
         primary: "#001B2E",
         secondary: "#F7EBE8",

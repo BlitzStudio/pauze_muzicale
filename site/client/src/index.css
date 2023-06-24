@@ -5,7 +5,7 @@
 
 * {
   box-sizing: border-box;
-  /* outline: 1px solid red;   */
+  /* outline: 1px solid red; */
 }
 
 @keyframes animateGradient {
@@ -21,8 +21,11 @@
 }
 
 @layer components {
-  .bgBlur-md {
-    @apply bg-white/30 backdrop-blur-md;
+  .bgBlurMdLight {
+    @apply bg-white/30 shadow-md backdrop-blur-md;
+  }
+  .bgBlurMdDark {
+    @apply bg-black/20 shadow-md backdrop-blur-md;
   }
   .gradientBgLight {
     background-image: linear-gradient(
