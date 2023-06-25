@@ -6,6 +6,7 @@
 * {
   box-sizing: border-box;
   /* outline: 1px solid red; */
+  @apply font-Nunito;
 }
 
 @keyframes animateGradient {
