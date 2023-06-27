@@ -20,11 +20,6 @@ export default function useThemeToggler(initial = false) {
       setState(0);
       body.classList = "dark";
     }
-
-    // setState(!state);
-    // themeBtn[state ? 1 : 0].classList.toggle("hidden");
-    // themeBtn[state ? 0 : 1].classList.toggle("hidden");
-    // body.classList = state ? "dark" : "";
   };
 
   return [state, toggler];

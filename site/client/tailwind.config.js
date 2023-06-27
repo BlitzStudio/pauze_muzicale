@@ -13,7 +13,7 @@ export default {
         DancingScript: ["Dancing Script", "cursive"],
       },
       backgroundImage: {
-        'login1': "url(/public/imgs/login-1.jpg)",
+        'login1': "url(/imgs/login-1.jpg)",
       },
       colors: {
         primary: "#001B2E",

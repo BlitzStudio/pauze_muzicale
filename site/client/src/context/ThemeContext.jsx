@@ -17,6 +17,14 @@ export default function ThemeProvider(props) {
     } else {
       document.querySelector("body").classList = "dark";
     }
+
+    return () => {
+      if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.querySelector("body").classList = "dark";
+      } else {
+        ToggleTheme();
+      }
+    };
   }, []);
 
   return (

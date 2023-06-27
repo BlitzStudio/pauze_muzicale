@@ -9,6 +9,14 @@
   @apply font-Nunito;
 }
 
+input {
+  @apply my-2 block rounded-sm border-2 border-solid px-2 py-1 outline-none outline focus:border-black;
+}
+
+input::placeholder {
+  @apply text-gray-400;
+}
+
 @keyframes animateGradient {
   0% {
     background-position: 0% 55%;
