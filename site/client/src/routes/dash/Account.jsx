@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Account() {
   return (
-    <div className="flex h-screen flex-col items-center justify-start pt-3 sm:ml-48">
+    <main className="flex h-screen flex-col items-center justify-start pt-3 sm:ml-48">
       <div className="flex flex-col items-center md:flex-row">
         <img
           // src="https://placehold.co/200"
@@ -15,6 +15,6 @@ export default function Account() {
           <p className="text-sm text-gray-700">hobart.reichel@example.com</p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -3,17 +3,19 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Nav from "./components/Navbar";
 import Account from "./Account";
 import SongForm from "./SongForm";
+import Config from "./Config";
 
 export default function Dash() {
   return (
     <>
-      <div>
+      <main>
         <Nav />
-        {<Outlet />}
-      </div>
+        <Outlet />
+      </main>
       <Routes>
         <Route path="account" element={<Account />} />
         <Route path="songs" element={<SongForm />} />
+        <Route path="config" element={<Config />} />
         <Route
           path=""
           element={

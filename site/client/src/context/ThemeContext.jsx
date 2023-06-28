@@ -12,19 +12,14 @@ export default function ThemeProvider(props) {
     // cand este randata componenta se verifica daca tema
     // preferata de sistem este cea light daca da se schimba state ul pt tema
 
-    if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      !window.matchMedia("(prefers-color-scheme: dark)").matches &&
+      document.querySelector("body").classList == "dark"
+    ) {
       ToggleTheme();
     } else {
       document.querySelector("body").classList = "dark";
     }
-
-    return () => {
-      if (!window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.querySelector("body").classList = "dark";
-      } else {
-        ToggleTheme();
-      }
-    };
   }, []);
 
   return (
