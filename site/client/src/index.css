@@ -17,6 +17,10 @@ input::placeholder {
   @apply text-gray-400;
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 @keyframes animateGradient {
   0% {
     background-position: 0% 55%;
