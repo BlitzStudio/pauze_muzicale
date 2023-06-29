@@ -53,7 +53,7 @@ export default function TimeTableForm() {
     e.preventDefault();
   }
   return (
-    <form onSubmit={handelSubmit} className="  flex flex-col rounded-md px-4">
+    <form onSubmit={handelSubmit} className="flex flex-col rounded-md px-4">
       <div className="flex text-center text-lg font-bold text-gray-800">
         <p className="w-[50%]">HH:mm</p>
         <p className="w-[50%]">Durata</p>
@@ -102,7 +102,7 @@ export default function TimeTableForm() {
             Reseteaza
           </button>
           <button
-            className=" mx-1 mt-2 rounded-md !bg-yaleBlue px-2 py-1 text-white  hover:!bg-yaleBlue/80 focus:ring-2 "
+            className=" mx-1 mt-2 rounded-md !bg-blue-500 px-2 py-1 text-white  hover:!bg-blue-500/80 focus:ring-2 "
             type="submit"
           >
             Trimite

@@ -21,7 +21,7 @@ export default function CollapseMenu({ children, title, isExpanded = false }) {
   return (
     <div>
       <div
-        className="flex items-center justify-between bg-slate-100 p-2 sm:hover:bg-slate-300 "
+        className="bg-slate-00 flex items-center justify-between p-2 sm:hover:bg-slate-100 "
         onClick={() => {
           CollapseMenu(!isCollapsed);
         }}
@@ -32,7 +32,7 @@ export default function CollapseMenu({ children, title, isExpanded = false }) {
       <div
         ref={child}
         className={
-          (isCollapsed ? "bg-slate-100 px-1" : "hidden bg-slate-100 px-1") + ""
+          (isCollapsed ? "bg-slate-00 px-1" : "hidden bg-slate-100 px-1") + ""
         }
       >
         {children}
