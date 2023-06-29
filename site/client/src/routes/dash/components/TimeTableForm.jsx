@@ -63,7 +63,7 @@ export default function TimeTableForm() {
         return (
           <div className="flex" key={index}>
             <input
-              className="w-[50%]"
+              className="mx-1 w-[50%]"
               type="time"
               name="time"
               id=""
@@ -71,7 +71,7 @@ export default function TimeTableForm() {
               onChange={(e) => handelChange(e, index)}
             />
             <input
-              className="w-[50%]"
+              className="mx-1 w-[50%]"
               type="number"
               name="durata"
               id=""
