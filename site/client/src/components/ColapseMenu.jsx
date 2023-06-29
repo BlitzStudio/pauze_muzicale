@@ -11,11 +11,10 @@ export default function CollapseMenu({ children, title, isExpanded = false }) {
   }, []);
 
   useEffect(() => {
-    console.log(isCollapsed);
     if (isCollapsed) {
-      expandSvg.current.style.transform = "rotate(90deg)";
-    } else {
       expandSvg.current.style.transform = "rotate(0deg)";
+    } else {
+      expandSvg.current.style.transform = "rotate(90deg)";
     }
   }, [isCollapsed]);
 
@@ -28,16 +27,16 @@ export default function CollapseMenu({ children, title, isExpanded = false }) {
         }}
       >
         <h2 className=" text-xl font-bold">{title}</h2>
-        <ExpandSvg element={expandSvg} className="h-auto w-[32px]  " />
+        <ExpandSvg element={expandSvg} className="h-auto w-[32px] rotate-90 " />
       </div>
-      <p
+      <div
         ref={child}
         className={
           (isCollapsed ? "bg-slate-100 px-1" : "hidden bg-slate-100 px-1") + ""
         }
       >
         {children}
-      </p>
+      </div>
     </div>
   );
 }
