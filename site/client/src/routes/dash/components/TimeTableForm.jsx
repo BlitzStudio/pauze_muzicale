@@ -53,7 +53,7 @@ export default function TimeTableForm() {
     e.preventDefault();
   }
   return (
-    <form onSubmit={handelSubmit} className=" flex  flex-col rounded-md px-2">
+    <form onSubmit={handelSubmit} className="  flex flex-col rounded-md px-4">
       <div className="flex text-center text-lg font-bold text-gray-800">
         <p className="w-[50%]">HH:mm</p>
         <p className="w-[50%]">Durata</p>
@@ -92,13 +92,13 @@ export default function TimeTableForm() {
 
       <div className="flex justify-between">
         <button
-          className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold   text-red-600    "
+          className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold  text-red-600    "
           onClick={clearForm}
         >
           Sterge
         </button>
         <div>
-          <button className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold text-black  focus:ring-2 ">
+          <button className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold text-black focus:ring-2  focus:ring-red-600 ">
             Reseteaza
           </button>
           <button
