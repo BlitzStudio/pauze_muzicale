@@ -1,53 +1,57 @@
-import express from "express";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
-import cors from "cors";
-const app = express();
-import "dotenv-flow/config.js";
-import api from "./api.js";
+import express from "express"
+import mongoose from "mongoose"
+import "dotenv-flow/config.js"
+import path from "path"
+import cookieParser from "cookie-parser"
+import cors from "cors"
+import morgan from "morgan"
 
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import downloadTracks, { download } from "./utils/cron.js";
+import db from './config/connectDb.js'
+import authRoutes from './routes/auth.js'
+import { errorHandler } from './middleware/errorHandler.js'
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const { PORT, HOST } = process.env;
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
-app.use(cookieParser(process.env["COOKIE_SECRET"]));
-app.use(
-  cors({
-    origin: process.env["ORIGIN"],
-    credentials: true,
-  })
-);
+const app = express()
+db()
+const port = process.env.PORT || 5000
 
-mongoose
-  .connect(process.env["DB_URL"])
-  .then(() => {
-    console.log("DATABASE:Online");
-  })
-  .catch((err) => {
-    console.log("DATABASE:Offline");
-    console.log(err);
-  });
+// configurati pt express
 
-app.use("/api", api);
-app.use(express.static(__dirname + "/dist"));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser(process.env.COOKIE_SECRET))
+app.use(cors({
+    origin: process.env.ORIGIN,
+    credentials: true
+}))
+app.use(morgan("dev"))
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
-app.use((err, req, res, next) => {
-  const { status = 500, message = "Server error" } = err;
-  res.status(status).send(message);
-});
+app.use("/api", authRoutes)
 
-app.listen(PORT, HOST, () => {
-  // downloadTracks.start();
-  console.log(`Server is listening on ${HOST}:${PORT}`);
-});
+
+
+// pt 
+if (process.env.NODE_ENV == "production") {
+    const __dirname = path.resolve()
+    app.use(express.static(path.join(__dirname, "/dist")))
+    app.get("*", (req, res) => {
+        res.render("index")
+    })
+} else {
+    app.get("/", (req, res) => {
+        res.send("Api is running")
+    })
+
+}
+
+app.use(errorHandler)
+
+
+
+
+app.listen(port, () => {
+    console.log(`
+    Server is listening on ${port}`
+    )
+})

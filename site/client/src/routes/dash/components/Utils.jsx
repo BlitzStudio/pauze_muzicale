@@ -6,7 +6,7 @@ import FilterSvg from "../../../svgs/Filter";
 // vor fi butoanele pt playMusic start ml start download
 export default function Utils() {
   return (
-    <main className="flex flex-col justify-evenly px-4 py-8 md:flex-row">
+    <main className="flex flex-col justify-evenly px-2 py-2 md:flex-row">
       <div className="my-1 flex cursor-pointer rounded border border-blue-500 bg-transparent fill-blue-700 px-2 py-1 font-semibold text-blue-700 hover:border-transparent hover:bg-blue-500 hover:fill-white hover:text-white">
         <PlaySvg className="h-auto w-[32px]" />
         <button>Play</button>
