@@ -1,11 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import ArrowBack from "../svgs/ArrowBack";
 import GoogleBtn from "../components/GoogleBtn";
 
 export default function Login() {
   return (
-    <div className="bg-login1 flex min-h-screen flex-col items-center  justify-center bg-cover bg-center">
+    <div className="flex min-h-screen flex-col items-center justify-center  bg-login1 bg-cover bg-center">
       <div
         className="items center m-2 flex h-[430px] max-w-[340px] flex-col 
       items-center  overflow-hidden rounded-lg  bg-white/20 text-center text-black backdrop-blur-md "

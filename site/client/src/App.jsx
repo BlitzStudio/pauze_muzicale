@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import Login from "./routes/Login";
 import Dash from "./routes/dash/index";
 import Home from "./routes/Home.jsx";
@@ -16,6 +18,7 @@ const App = function (props) {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
