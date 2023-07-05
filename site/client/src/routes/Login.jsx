@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import ArrowBack from "../svgs/ArrowBack";
 import GoogleBtn from "../components/GoogleBtn";
@@ -21,10 +20,6 @@ export default function Login() {
         </div>
 
         <GoogleBtn />
-
-        <Link className="pt-4" to="/dash">
-          Dashboard(DevOnly)
-        </Link>
       </div>
     </div>
   );

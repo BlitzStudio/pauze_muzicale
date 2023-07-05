@@ -3,6 +3,8 @@ import { googleVerification } from '../tools/googleVerification.js'
 import { CustomError } from '../middleware/errorHandler.js'
 import generateJWTPair from '../tools/generateJwt.js'
 
+const { GOOGLE_DOMAIN_CHECK } = process.env
+
 const userSchema = new mongoose.Schema(
     {
         picture: {
@@ -39,7 +41,7 @@ const userSchema = new mongoose.Schema(
                 const userDataGoogle = await googleVerification(token)
                 const { email, name, picture } = userDataGoogle
 
-                if (!email.includes("@cnaic.com")) {
+                if (!email.includes(GOOGLE_DOMAIN_CHECK)) {
                     throw new CustomError(401, 'Not authorized')
                 }
 

@@ -5,6 +5,7 @@ import Login from "./routes/Login";
 import Dash from "./routes/dash/index";
 import Home from "./routes/Home.jsx";
 import NotFound from "./routes/404";
+import IsAuth from "./components/isAuth";
 
 const App = function (props) {
   return (
@@ -12,7 +13,7 @@ const App = function (props) {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route>
+        <Route element={<IsAuth />}>
           <Route path="dash/*" element={<Dash />} />
         </Route>
 
