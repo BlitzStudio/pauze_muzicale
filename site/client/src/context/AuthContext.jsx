@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useDebugValue } from "react";
+import { createContext, useState, useEffect } from "react";
 import useRefreshAccessToken from "../hooks/useRefreshAccessToken";
 
 export const AuthContext = createContext({});
@@ -9,13 +9,15 @@ export default function AuthProvider(props) {
   const refresh = useRefreshAccessToken();
   useEffect(() => {
     const main = async () => {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn) {
-        setIsLoading((prevState) => !prevState);
+      const isLoggedIn =
+        localStorage.getItem("isLoggedIn") == "true" ? true : false;
+      console.log(isLoggedIn);
+      if (isLoggedIn == true) {
+        setIsLoading(true);
         console.log("Utilizatorul este logat");
         const userData = await refresh();
         setUser(userData);
-        setIsLoading((prevState) => !prevState);
+        setIsLoading(false);
       }
     };
     main();

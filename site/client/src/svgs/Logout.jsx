@@ -14,6 +14,7 @@ export default function FormSvg({ width, height, className, children }) {
           .get("/logout", { withCredentials: true })
           .then((data) => {
             setUser({});
+            localStorage.setItem("isLoggedIn", false);
             navigate("/login");
           })
           .catch((err) => {

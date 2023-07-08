@@ -66,12 +66,8 @@ router.get("/refresh", async (req, res) => {
     const { accessToken, refreshToken } = generateJwtPair(isUser)
     isUser.refreshToken = refreshToken
     await isUser.save()
-    res.json(accessToken)
+    res.json(refreshToken)
 })
-
-
-
-
 
 
 export default router
