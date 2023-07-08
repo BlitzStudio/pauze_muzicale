@@ -4,7 +4,7 @@ import NavItem from "./NavItem";
 
 import AccountSvg from "../../../svgs/Account";
 import FormSvg from "../../../svgs/Form";
-import LogoutSvg from "../../../svgs/logout";
+import LogoutSvg from "../../../svgs/Logout";
 import TuneSvg from "../../../svgs/Tune";
 import HomeSvg from "../../../svgs/Home";
 
