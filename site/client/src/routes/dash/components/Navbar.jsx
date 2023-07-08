@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import NavItem from "./NavItem";
+
 import AccountSvg from "../../../svgs/Account";
 import FormSvg from "../../../svgs/Form";
-import ArrowBackSvg from "../../../svgs/ArrowBack";
+import LogoutSvg from "../../../svgs/logout";
 import TuneSvg from "../../../svgs/Tune";
 import HomeSvg from "../../../svgs/Home";
 
@@ -50,13 +51,13 @@ export default function nav() {
         </NavItem>
         <NavItem>
           <NavLink className="flex items-center justify-center rounded-full p-1 sm:justify-start sm:rounded-e-md sm:hover:rounded-e-md sm:hover:bg-gray-200">
-            <ArrowBackSvg
+            <LogoutSvg
               width="32px"
               height="32px"
               className="flex cursor-pointer items-center"
             >
-              <p className="hidden sm:block">Inapoi</p>
-            </ArrowBackSvg>
+              <p className="hidden sm:block">Deconectare</p>
+            </LogoutSvg>
           </NavLink>
         </NavItem>
       </ul>

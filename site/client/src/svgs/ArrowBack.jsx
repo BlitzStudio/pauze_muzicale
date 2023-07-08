@@ -8,7 +8,7 @@ export default function ArrowBack({ width, height, className, children }) {
     <div
       className={className}
       onClick={() => {
-        navigate(-1);
+        navigate("/");
       }}
     >
       <svg

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -6,6 +7,9 @@ import Dash from "./routes/dash/index";
 import Home from "./routes/Home.jsx";
 import NotFound from "./routes/404";
 import IsAuth from "./components/isAuth";
+
+import useAuth from "./hooks/useAuth";
+import useRefreshAccessToken from "./hooks/useRefreshAccessToken";
 
 const App = function (props) {
   return (

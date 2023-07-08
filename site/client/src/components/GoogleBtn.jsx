@@ -23,6 +23,7 @@ const GoogleBtn = () => {
       .then((response) => {
         const userData = jwt(response.data);
         setUser(userData);
+        localStorage.setItem("isLoggedIn", true);
         navigate("/dash");
       })
       .catch((err) => {
@@ -48,8 +49,8 @@ const GoogleBtn = () => {
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
+                pauseOnHover: false,
+                draggable: false,
                 progress: undefined,
                 theme: "light",
               }
