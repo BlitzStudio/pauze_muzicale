@@ -14,6 +14,7 @@ export default {
       },
       backgroundImage: {
         'login1': "url(/imgs/login-1.jpg)",
+        'login2': "url(/imgs/login-2.jpg)",
       },
       colors: {
         primary: "#001B2E",

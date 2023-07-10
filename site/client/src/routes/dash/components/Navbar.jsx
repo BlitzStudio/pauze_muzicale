@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import NavItem from "./NavItem";
 
+import ThemeToggler from "../../../components/ThemeToggler";
 import AccountSvg from "../../../svgs/Account";
 import FormSvg from "../../../svgs/Form";
 import LogoutSvg from "../../../svgs/Logout";
@@ -12,22 +13,22 @@ export default function nav() {
   // const NavLinkStyle = "flex items-center justify-center sm:justify-start";
   const NavLinkStyle = function ({ isActive, isPending }) {
     return isActive
-      ? "flex items-center justify-center rounded-full bg-slate-300 p-1 sm:justify-start sm:rounded-e-md sm:hover:rounded-e-md sm:hover:bg-gray-200"
-      : "flex items-center justify-center rounded-full p-1 sm:justify-start sm:rounded-e-md sm:hover:rounded-e-md sm:hover:bg-gray-200";
+      ? "flex items-center justify-center rounded-full bg-gray-300 dark:bg-[#003D7D]  p-1 sm:justify-start sm:rounded-e-md sm:bg-gray-300 sm:hover:rounded-e-md "
+      : "flex items-center justify-center rounded-full p-1 sm:justify-start sm:rounded-e-md sm:hover:bg-slate-200  dark:sm:hover:bg-[#002D5D] sm:hover:rounded-e-md";
   };
 
   return (
-    <nav className="fixed bottom-0 mt-2 bg-white p-1 shadow-inner   shadow-slate-300  sm:top-0 sm:mt-0 sm:h-screen sm:shadow-lg sm:shadow-slate-300">
-      <ul className="flex w-screen items-center justify-around sm:h-[100vh] sm:w-48 sm:flex-col ">
+    <nav className="fixed bottom-0 mt-2 bg-white  p-1 drop-shadow-[0px_-3px_10px_rgba(0,0,0,0.25)] dark:bg-oxfordBlue dark:text-white dark:drop-shadow-[0px_-3px_10px_rgba(20,40,77)] sm:top-0 sm:mt-0 sm:h-screen sm:drop-shadow-[6px_0px_10px_rgba(0,0,0,0.25)] sm:dark:drop-shadow-[0px_-3px_10px_rgba(20,40,77)]">
+      <ul className="flex w-screen items-center justify-around  sm:h-[100vh] sm:w-52 sm:flex-col ">
         <div className="mb-8 hidden flex-col items-center  sm:flex sm:w-full">
-          <NavLink to="/" className="text-xl font-bold">
+          <NavLink to="/" className="text-xl font-bold ">
             Pauze Muzicale
           </NavLink>
-          <p className="text-slate-700">Dashboard</p>
+          <p className="text-slate-600 dark:text-slate-200">Dashboard</p>
         </div>
         <NavItem>
           <NavLink to="/dash" className={NavLinkStyle} end>
-            <HomeSvg className="h-auto w-[32px]" />
+            <HomeSvg className="h-auto w-[32px] " />
             <p className="hidden sm:inline">Acasa</p>
           </NavLink>
         </NavItem>
@@ -50,7 +51,7 @@ export default function nav() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="flex items-center justify-center rounded-full p-1 sm:justify-start sm:rounded-e-md sm:hover:rounded-e-md sm:hover:bg-gray-200">
+          <div className="flex items-center justify-center rounded-full p-1 sm:justify-start">
             <LogoutSvg
               width="32px"
               height="32px"
@@ -58,7 +59,8 @@ export default function nav() {
             >
               <p className="hidden sm:block">Deconectare</p>
             </LogoutSvg>
-          </NavLink>
+            <ThemeToggler />
+          </div>
         </NavItem>
       </ul>
     </nav>

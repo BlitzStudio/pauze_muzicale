@@ -7,11 +7,10 @@ import Config from "./Config";
 
 export default function Dash() {
   return (
-    <>
-      <main>
-        <Nav />
-        <Outlet />
-      </main>
+    <div className="dark:bg-oxfordBlue">
+      <Nav />
+      <Outlet />
+
       <Routes>
         <Route path="account" element={<Account />} />
         <Route path="songs" element={<SongForm />} />
@@ -19,12 +18,12 @@ export default function Dash() {
         <Route
           path=""
           element={
-            <div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-500 sm:ml-44">
+            <div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-500   dark:text-white sm:ml-44">
               Welcome back
             </div>
           }
         />
       </Routes>
-    </>
+    </div>
   );
 }

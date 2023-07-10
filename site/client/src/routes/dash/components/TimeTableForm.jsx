@@ -54,7 +54,7 @@ export default function TimeTableForm() {
   }
   return (
     <form onSubmit={handelSubmit} className="flex flex-col rounded-md px-4">
-      <div className="flex text-center text-lg font-bold text-gray-800">
+      <div className="flex text-center text-lg font-bold text-gray-800 dark:text-gray-200">
         <p className="w-[50%]">HH:mm</p>
         <p className="w-[50%]">Durata</p>
       </div>
@@ -63,7 +63,7 @@ export default function TimeTableForm() {
         return (
           <div className="flex" key={index}>
             <input
-              className="mx-1 w-[50%]"
+              className="mx-1 w-[50%] dark:text-black"
               type="time"
               name="time"
               id=""
@@ -71,7 +71,7 @@ export default function TimeTableForm() {
               onChange={(e) => handelChange(e, index)}
             />
             <input
-              className="mx-1 w-[50%]"
+              className="mx-1 w-[50%] dark:text-black"
               type="number"
               name="durata"
               id=""
@@ -84,7 +84,7 @@ export default function TimeTableForm() {
       })}
 
       <div
-        className="my-2 block cursor-pointer rounded-sm border-2 border-solid px-2 py-1 text-center text-gray-700 outline-none outline focus:border-black"
+        className="my-2 block cursor-pointer rounded-sm border-2 border-solid px-2 py-1 text-center text-gray-700 outline-none outline focus:border-black dark:text-gray-200"
         onClick={addInput}
       >
         Pauza noua
@@ -92,13 +92,13 @@ export default function TimeTableForm() {
 
       <div className="flex justify-between">
         <button
-          className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold  text-red-600    "
+          className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold text-red-600 dark:text-white"
           onClick={clearForm}
         >
           Sterge
         </button>
         <div>
-          <button className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold text-black focus:ring-2  focus:ring-red-600 ">
+          <button className="  mx-1 mt-2 rounded-md border-2 border-solid border-red-600 px-2 py-1 font-semibold text-black focus:ring-2 focus:ring-red-600  dark:text-white ">
             Reseteaza
           </button>
           <button

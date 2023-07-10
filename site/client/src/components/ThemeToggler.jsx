@@ -1,14 +1,33 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import useThemeToggler from "../hooks/useThemeToggler";
 
 const ThemeToggler = () => {
-  const { isLight, ToggleTheme } = useContext(ThemeContext);
+  const { isLight, toggle } = useThemeToggler();
+  const lightElement = useRef(null);
+  const darkElement = useRef(null);
+
+  useEffect(() => {
+    if (isLight) {
+      // else light trebuie sa se schimbe pe dark
+      // se afiseaza luna si dispare soarele
+
+      lightElement.current.classList.remove("hidden");
+      darkElement.current.classList.add("hidden");
+    } else {
+      // este dark se schimba pe light
+      // se afiseaza soarele si dispare luna
+      lightElement.current.classList.add("hidden");
+      darkElement.current.classList.remove("hidden");
+    }
+  }, [isLight]);
 
   return (
-    <button className="flex justify-center" onClick={ToggleTheme}>
+    <button className="flex justify-center" onClick={toggle}>
       <div
         id="light_btn"
-        className="mx-3 hidden rounded-full fill-mikadoYellow p-[4px] hover:bg-black/10"
+        ref={lightElement}
+        className="mx-3 hidden  rounded-full fill-mikadoYellow p-[4px] hover:bg-black/10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +40,8 @@ const ThemeToggler = () => {
       </div>
       <div
         id="dark_btn"
-        className="mx-3 rounded-full fill-[#dce7f7] p-[4px]  hover:bg-white/20 hover:fill-white"
+        ref={darkElement}
+        className="mx-3 hidden rounded-full fill-[#dce7f7] p-[4px]  hover:bg-white/20 hover:fill-white"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

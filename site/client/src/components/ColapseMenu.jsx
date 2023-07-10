@@ -21,13 +21,16 @@ export default function CollapseMenu({ children, title, isExpanded = false }) {
   return (
     <div>
       <div
-        className="bg-slate-00 flex items-center justify-between p-2 sm:hover:bg-slate-100 "
+        className="flex items-center justify-between p-2  dark:text-white "
         onClick={() => {
           CollapseMenu(!isCollapsed);
         }}
       >
         <h2 className=" text-xl font-bold">{title}</h2>
-        <ExpandSvg element={expandSvg} className="h-auto w-[32px] rotate-90 " />
+        <ExpandSvg
+          element={expandSvg}
+          className="h-auto w-[32px] rotate-90 dark:fill-white"
+        />
       </div>
       <div
         ref={child}

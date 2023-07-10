@@ -5,7 +5,6 @@ export default function isAuth() {
   const { user, isLoading } = useAuth();
   const isLoggedIn =
     localStorage.getItem("isLoggedIn") == "true" ? true : false;
-  console.log(isLoggedIn);
 
   if (isLoading && isLoggedIn) {
     return (
