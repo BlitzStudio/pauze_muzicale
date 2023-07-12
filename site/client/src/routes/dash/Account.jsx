@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
+import useAuth from "../../hooks/useAuth";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Account() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   return (
     <main className="flex h-screen flex-col items-center justify-start pt-3 dark:text-white sm:ml-48">
       <div className="flex flex-col items-center md:flex-row">

@@ -59,7 +59,7 @@ export default function nav() {
             >
               <p className="hidden sm:block">Deconectare</p>
             </LogoutSvg>
-            <ThemeToggler />
+            <ThemeToggler height="24px" />
           </div>
         </NavItem>
       </ul>
