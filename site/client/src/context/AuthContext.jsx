@@ -14,7 +14,6 @@ export default function AuthProvider(props) {
         localStorage.getItem("isLoggedIn") == "true" ? true : false;
       if (isLoggedIn == true) {
         setIsLoading(true);
-
         const userData = await refresh();
         setUser(userData);
         setIsLoading(false);
