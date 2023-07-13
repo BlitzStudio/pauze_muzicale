@@ -8,6 +8,7 @@ import axios from "../../api/axios";
 import Input from "../../components/ValidatedInput";
 import WarningSvg from "../../svgs/Warning";
 import DoneSvg from "../../svgs/Done";
+import CloseSvg from "../../svgs/Close.jsx";
 
 export default function SongForm() {
   const { user, setUser, isLoading } = useAuth();
@@ -79,6 +80,29 @@ export default function SongForm() {
         },
       ];
     });
+  }
+
+  function handelClearOrDelete(e, index) {
+    if (form[index].value) {
+      setForm((prevState) => {
+        return prevState.map((data, ind) => {
+          if (index == ind) {
+            data.value = "";
+          }
+          return data;
+        });
+      });
+    } else if (form.length != 1) {
+      setForm((prevState) => {
+        let finalState = [];
+        prevState.forEach((data, ind) => {
+          if (index != ind) {
+            finalState.push(data);
+          }
+        });
+        return finalState;
+      });
+    }
   }
 
   function handelSubmit(e) {
@@ -177,6 +201,10 @@ export default function SongForm() {
                 validIcon={
                   <DoneSvg className="h-auto w-[24px] fill-green-600 dark:bg-white" />
                 }
+                clearCloseIcon={
+                  <CloseSvg className="h-auto w-[24px] fill-green-600 dark:bg-white" />
+                }
+                handelClearOrDelete={handelClearOrDelete}
               />
             ))}
             {inputsNr != 1 ? (
