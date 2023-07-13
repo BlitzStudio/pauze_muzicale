@@ -12,7 +12,7 @@ export default function useRefreshAccessToken() {
         console.log(err);
       });
 
-    return jwt(response);
+    return { ...jwt(response), accessToken: response };
   };
   return refreshToken;
 }
