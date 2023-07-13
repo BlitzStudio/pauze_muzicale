@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
+import linkParser from "../../api/linkParser.js";
+import { toast } from "react-toastify";
+import jwt from "jwt-decode";
 import useAuth from "../../hooks/useAuth";
+import axios from "../../api/axios";
 
 import Input from "../../components/ValidatedInput";
 import WarningSvg from "../../svgs/Warning";
 import DoneSvg from "../../svgs/Done";
 
-import linkParser from "../../api/linkParser.js";
-
 export default function SongForm() {
   const { user, setUser, isLoading } = useAuth();
 
-  const [form, setForm] = useState([{ value: "", isValid: false }]);
+  const [form, setForm] = useState([{ value: "", isValid: false, id: "" }]);
   const [inputsNr, setInputNr] = useState();
   const [isAllowed, setIsAllowed] = useState(true);
 
   const refreshDate = new Date(user?.refreshWindow);
-  const now = new Date();
+
   const days = [
     "Luni",
     "Marti",
@@ -28,14 +30,33 @@ export default function SongForm() {
 
   function handelChange(e, index) {
     const value = e.target.value;
-    console.log(value);
-    const isValid = linkParser(value);
-    console.log(isValid);
+    const link = linkParser(value);
+    let isValid = link ? true : false;
+    const id = isValid ? link : "";
+
+    // afiseaza un mesaj daca linkul este o copie
+    form.forEach((input) => {
+      if (input.id == id && input.id && input.isValid) {
+        isValid = false;
+        toast.warn("Tocmai ai introdus o copie, te rog sa introduci alt link", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    });
+
     setForm((prevState) => {
       return prevState.map((data, ind) => {
         if (index == ind) {
           data.value = value;
-          data.isValid = isValid;
+          data.isValid = value.length == 0 ? true : isValid;
+          data.id = id;
           return data;
         } else {
           return data;
@@ -50,8 +71,6 @@ export default function SongForm() {
 
     setInputNr(inputsNr - 1);
     setForm((prevState) => {
-      console.log(prevState);
-
       return [
         ...prevState,
         {
@@ -62,23 +81,66 @@ export default function SongForm() {
     });
   }
 
-  function handelSubmit(e, index) {
+  function handelSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
+
+    let formIsValid = true;
+    // validaream formularului se v-a face daca input.value !=""
+    // pt moment pana actualizez Validated Input merge si cu inputurile goale
+    // la validated input trebuie sa adaug un btn pt clear form si delete input(2in1)
+    for (let i = 0; i < form.length && formIsValid; i++) {
+      if (!form[i].isValid) {
+        formIsValid = false;
+      }
+    }
+
+    if (formIsValid) {
+      axios
+        .post(
+          "/songs",
+          {
+            ids: form.map((link) => {
+              return link.id;
+            }),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        )
+        .then((response) => {
+          setUser({ ...jwt(response.data), accessToken: response.data });
+        });
+      // reseteaza inputurile
+      setForm([{ value: "", isValid: false, id: "" }]);
+    } else {
+      toast.error(
+        "Pentru a trimite formularul toate datele introduse trebuie sa fie valide",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    }
   }
 
   useEffect(() => {
-    console.log("Rerender");
-  }, [form]);
-
-  useEffect(() => {
-    //     if (refreshDate.getTime() >= now.getTime() && user?.submittedCount == 3) {
+    const now = new Date();
+    //if (refreshDate.getTime() >= now.getTime() && user?.submittedCount == 3) {
     //in cazul in care utilizatorul nu trebuie sa trmita melodii
     //     } else if (refreshDate.getTime() < now.getTime()) {
     // in cazul in care refreshWindowul nu a fost resetat pe server
     // else
     // pt a afisa inputurile
-    const inputs = [];
+
     if (refreshDate.getTime() >= now.getTime() && user?.submittedCount == 3) {
       setIsAllowed(false);
     } else {
@@ -90,21 +152,10 @@ export default function SongForm() {
         i = user?.submittedCount;
       }
       setInputNr(3 - i);
-
-      // for (i; i < 3; i++) {
-      //   inputs.push({
-      //     value: "",
-      //     isValid: false,
-      //   });
-      // }
-      // setForm(() => {
-      //   return inputs;
-      // });
     }
   }, [user]);
 
   if (isAllowed) {
-    console.log(form);
     return (
       <main className="flex h-screen items-center justify-center p-8 sm:ml-48">
         <form
@@ -138,8 +189,12 @@ export default function SongForm() {
             ) : null}
           </div>
 
-          <button className="m mt-2 rounded-md !bg-yaleBlue px-2 py-1 text-white  hover:!bg-yaleBlue/80 focus:ring-2 focus:!ring-mikadoYellow">
-            Send songs
+          <button
+            onClick={handelSubmit}
+            type="submit"
+            className="m mt-2 rounded-md !bg-yaleBlue px-2 py-1 text-white  hover:!bg-yaleBlue/80 focus:ring-2 focus:!ring-mikadoYellow"
+          >
+            Trimite melodiile
           </button>
         </form>
       </main>
