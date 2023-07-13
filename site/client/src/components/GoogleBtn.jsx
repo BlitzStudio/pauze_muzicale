@@ -22,7 +22,7 @@ const GoogleBtn = () => {
       )
       .then((response) => {
         const userData = jwt(response.data);
-        setUser(userData);
+        setUser({ ...userData, accessToken: response.data });
         localStorage.setItem("isLoggedIn", true);
         navigate("/dash");
       })
