@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import NavItem from "./NavItem";
+import useAuth from "../../../hooks/useAuth";
 
 import ThemeToggler from "../../../components/ThemeToggler";
 import AccountSvg from "../../../svgs/Account";
@@ -10,7 +11,7 @@ import TuneSvg from "../../../svgs/Tune";
 import HomeSvg from "../../../svgs/Home";
 
 export default function nav() {
-  // const NavLinkStyle = "flex items-center justify-center sm:justify-start";
+  const { user } = useAuth();
   const NavLinkStyle = function ({ isActive, isPending }) {
     return isActive
       ? "flex items-center justify-center rounded-full bg-gray-300 dark:bg-[#003D7D]  p-1 sm:justify-start sm:rounded-e-md sm:bg-gray-300 sm:hover:rounded-e-md "
@@ -44,12 +45,14 @@ export default function nav() {
             <p className="hidden sm:inline">Recomanda melodii</p>
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink to="config" className={NavLinkStyle}>
-            <TuneSvg className="h-auto w-[32px]" />
-            <p className="hidden sm:inline">Configurare</p>
-          </NavLink>
-        </NavItem>
+        {user?.role == "admin" && (
+          <NavItem>
+            <NavLink to="config" className={NavLinkStyle}>
+              <TuneSvg className="h-auto w-[32px]" />
+              <p className="hidden sm:inline">Configurare</p>
+            </NavLink>
+          </NavItem>
+        )}
         <NavItem>
           <div className="flex items-center justify-center rounded-full p-1 sm:justify-start">
             <LogoutSvg

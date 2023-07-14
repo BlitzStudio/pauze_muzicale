@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
+import IsAdmin from "../../components/isAdmin";
+
 import Nav from "./components/Navbar";
 import Account from "./Account";
 import SongForm from "./SongForm";
@@ -14,7 +16,9 @@ export default function Dash() {
       <Routes>
         <Route path="account" element={<Account />} />
         <Route path="songs" element={<SongForm />} />
-        <Route path="config" element={<Config />} />
+        <Route element={<IsAdmin />}>
+          <Route path="config" element={<Config />} />
+        </Route>
         <Route
           path=""
           element={
