@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
+import axios from "../../../api/axios";
+import useAuth from "../../../hooks/useAuth";
 import { useEffect } from "react";
 
 export default function TimeTableForm() {
   const lastInput = useRef();
+  const { user } = useAuth();
   const [formInputs, setFormInputs] = useState([
     {
       time: "01:00",
@@ -48,9 +51,34 @@ export default function TimeTableForm() {
       },
     ]);
   }
+  function generateTimetable(array) {
+    return array.map((element) => {
+      const [Sh, Sm] = element.time.split(":");
+      let Eh = Sh;
+      let Em = parseInt(Sm) + element.durata;
+      if (Em >= 60) {
+        Eh += 1;
+        Em = (Em % 60) / 10 > 1 ? Em % 60 : `0${Em % 60}`;
+      }
+      return `${Sh}:${Sm}_${Sh}:${Em}`;
+    });
+  }
 
   function handelSubmit(e) {
-    const form = document.querySelector("form");
+    const timeTable = generateTimetable(formInputs);
+    axios
+      .post(
+        "/admin/time",
+        {
+          timeTable,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      )
+      .catch((e) => console.log(e));
     e.preventDefault();
   }
   return (

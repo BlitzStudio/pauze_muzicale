@@ -13,6 +13,10 @@ const configSchema = new mongoose.Schema({
     domainCheck: {
         type: String,
         require: true
+    },
+    timeTable: {
+        type: [String],
+        require: true
     }
 })
 

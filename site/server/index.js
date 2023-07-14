@@ -8,7 +8,8 @@ import morgan from "morgan"
 
 import db from './config/connectDb.js'
 import authRoutes from './routes/auth.js'
-import Utils from './routes/utils.js'
+import utilsRoutes from './routes/utils.js'
+import adminRoutes from './routes/admin.js'
 import { errorHandler } from './middleware/errorHandler.js'
 
 
@@ -29,7 +30,8 @@ app.use(morgan("dev"))
 
 
 app.use("/api", authRoutes)
-app.use("/api", Utils)
+app.use("/api", utilsRoutes)
+app.use("/api/admin", adminRoutes)
 
 
 
