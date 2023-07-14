@@ -5,7 +5,7 @@ export default function TimeTableForm() {
   const lastInput = useRef();
   const [formInputs, setFormInputs] = useState([
     {
-      time: "00:00",
+      time: "01:00",
       durata: 10,
     },
   ]);
@@ -14,7 +14,8 @@ export default function TimeTableForm() {
     const [H, min] = formInputs[formInputs.length - 1].time
       .split(":")
       .map((item) => parseInt(item));
-    const newH = H / 10 > 1 ? H + 1 : `0${H + 1}`;
+    const newH = (H + 1) / 10 >= 1 ? H + 1 : `0${H + 1}`;
+
     const newMin = min / 10 > 1 ? min : `0${min}`;
 
     return `${newH}:${newMin}`;

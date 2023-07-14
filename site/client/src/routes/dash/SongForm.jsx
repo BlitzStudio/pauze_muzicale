@@ -202,7 +202,7 @@ export default function SongForm() {
                   <DoneSvg className="h-auto w-[24px] fill-green-600 dark:bg-white" />
                 }
                 clearCloseIcon={
-                  <CloseSvg className="h-auto w-[24px] fill-green-600 dark:bg-white" />
+                  <CloseSvg className="h-auto w-[24px] fill-slate-900 dark:bg-white" />
                 }
                 handelClearOrDelete={handelClearOrDelete}
               />
