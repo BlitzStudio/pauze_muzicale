@@ -11,8 +11,17 @@ router.post("/time", isAuth, async (req, res) => {
         return res.sendStatus(401)
     }
     const site = await SiteConfig.findOne({})
-    console.log(site)
+    site.timeTable = timeTable
+    await site.save()
     res.sendStatus(200)
 })
+router.get("/time", isAuth, async (req, res) => {
+    if (req.user.role != "admin") {
+        return res.sendStatus(401)
+    }
+    const site = await SiteConfig.findOne({})
+    res.json(site.timeTable)
+})
+
 
 export default router

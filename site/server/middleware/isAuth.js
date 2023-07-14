@@ -9,7 +9,7 @@ export default function isAuth(req, res, next) {
     }
     const token = authorization.split(" ")[1]
     jwt.verify(token, ACCESS_SECRET, (err, decoded) => {
-        console.log(err)
+
         if (err) {
             console.log(err)
             return res.sendStatus(403)
