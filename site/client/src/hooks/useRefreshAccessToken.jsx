@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "../api/axios";
 import jwt from "jwt-decode";
 
 export default function useRefreshAccessToken() {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   const refreshToken = async function () {
     const response = await axios
       .get("/refresh", {
@@ -11,8 +13,11 @@ export default function useRefreshAccessToken() {
       })
       .then((response) => response.data)
       .catch((err) => {
+        console.log(err);
         localStorage.setItem("isLoggedIn", false);
-        navigate("/login");
+        if (location.pathname != "/") {
+          navigate("/login");
+        }
       });
 
     return { ...jwt(response), accessToken: response };

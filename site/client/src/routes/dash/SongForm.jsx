@@ -102,6 +102,9 @@ export default function SongForm() {
         });
         return finalState;
       });
+      setInputNr(() => {
+        return inputsNr + 1;
+      });
     }
   }
 
