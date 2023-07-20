@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 import morgan from "morgan"
 
+import downloadTrackCron from './downloader/cron.js'
 import db from './config/connectDb.js'
 import authRoutes from './routes/auth.js'
 import utilsRoutes from './routes/utils.js'
@@ -55,7 +56,9 @@ app.use(errorHandler)
 
 
 app.listen(port, () => {
+    downloadTrackCron.start()
     console.log(`
     Server is listening on ${port}`
     )
+
 })
