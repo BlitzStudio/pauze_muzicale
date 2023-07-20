@@ -58,7 +58,10 @@ router.get("/refresh", async (req, res) => {
     if (!cookie.rht) {
         return res.status(401).send("No refresh token")
     }
-    const userData = jwt.decode(cookie.rht, REFRESH_SECRET)
+    const userData = jwt.verify(cookie.rht, REFRESH_SECRET, (err, decoded) => {
+        if (err) return res.sendStatus(401)
+        return decoded
+    })
     const isUser = await User.findById(userData.azp)
     if (!isUser) {
         return res.status(403).send("No user registered")

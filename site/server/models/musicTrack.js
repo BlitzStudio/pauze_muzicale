@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const musicTrack = new Schema({
-  _id: {
+
+  ytId: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   status: {
     type: Number,
