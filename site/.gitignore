@@ -3,3 +3,6 @@ node_modules
 dist
 secrets
 _old
+**/ffmpeg/**
+**/music/**
+.vscode
