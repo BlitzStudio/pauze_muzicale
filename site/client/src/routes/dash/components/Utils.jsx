@@ -61,7 +61,7 @@ export default function Utils() {
   return (
     <main className="flex flex-col justify-evenly px-2 py-2 md:flex-row">
       <div
-        className="my-1 flex cursor-pointer rounded border border-blue-500 bg-transparent fill-white px-2 py-1 pr-4 font-semibold text-white hover:border-transparent hover:bg-blue-500 hover:fill-white hover:text-white"
+        className="my-1 flex cursor-pointer rounded border border-blue-500 bg-transparent fill-white px-2 py-1 pr-4 font-semibold text-white hover:border-transparent hover:bg-blue-500 hover:fill-white hover:text-white dark:fill-black dark:text-black"
         onClick={playerBtn}
       >
         <PlaySvg className="h-auto w-[32px]" />

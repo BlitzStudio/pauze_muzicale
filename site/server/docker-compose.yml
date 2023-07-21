@@ -15,7 +15,7 @@ services:
       context: ../client
       dockerfile: Dockerfile
     environment:
-      - VITE_ORIGIN=https://cncmusic.ml
+      - VITE_DEV_ORIGIN=https://demo.pauzemuzicale.com
       - VITE_GOOGLE_ID=217326008512-h0sev1ib4bh5es1i9ureevcjih8ktd7p.apps.googleusercontent.com
       - VITE_SCHOOL_NAME=Colegiul National Alexandru Ioan Cuza
     volumes:
@@ -27,10 +27,11 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=8080
-      - ORIGIN=https://cncmusic.ml
-      - DB_URL=mongodb://db:27017/pauzeMuzicale
-      - COOKIE_SECRET=28901d2f-c0ba-4ebc-aa44-2a43ae4e9528
-      - JWT_SECRET=f47cb99d-cb96-44a2-8577-05a47b0e6138
+      - ORIGIN=https://demo.pauzemuzicale.com
+      - NODE_ENV=production
+      - MONGO_URL=mongodb://db:27017/pauzeMuzicale
+      - JWT_REFRESH_SECRET=28901d2f-c0ba-4ebc-aa44-2a43ae4e9528
+      - JWT_ACCESS_SECRET=f47cb99d-cb96-44a2-8577-05a47b0e6138
       - GOOGLE_ID=217326008512-h0sev1ib4bh5es1i9ureevcjih8ktd7p.apps.googleusercontent.com
       - GOOGLE_DOMAIN_CHECK=@gmail.com
       - FFMPEG_PATH=/usr/bin/ffmpeg
@@ -41,7 +42,8 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - "C:\\Users\\ionut\\projects\\Muzica_in_pauze\\ml\\data\\test_wav:/app/music"
+      - "C:\\Users\\ionut\\Desktop\\pauzeMuzicale\\music:/app/music"
+      - "C:\\Users\\ionut\\Desktop\\pauzeMuzicale\\music1:/app/music1"
     depends_on:
       - db
       - client
