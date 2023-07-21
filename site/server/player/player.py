@@ -58,25 +58,19 @@ class MusicPlayer:
         Sh, Sm, Eh, Em, now = this.__getBreaks(this.pauze[this.index])
         if not duration:
             duration = (Em - now[4]) * 60000
-        # print(f"Play music for {duration}")
         while duration > 0:
             track = this.__randomTrack()
             audio = MP3(track)
             trackLenght = math.floor(audio.info.length) * 1000
             if trackLenght >= duration:
-                # print("Song too long")
                 trackLenght = duration
             this.Play(track, trackLenght)
             duration -= trackLenght
-
         if this.index != len(this.pauze) - 1:
-            print("Marire")
-            print(this.index)
-            print(len(this.pauze) - 1)
+            # print("Marire")
             this.index += 1
-            print(this.index)
         else:
-            print("Resetare")
+            # print("Resetare")
             this.index = 0
 
     # In baza vectorului functia detecteaza care este urmatoarea pauza
@@ -94,37 +88,30 @@ class MusicPlayer:
                     print("Suntem in pauza")
                     duration = (Em - now[4]) * 60000
                     this.__initPlayer(duration)
-                    if this.index > (len(this.pauze) - 1):
-                        this.index = 0
-                    else:
-                        this.index = i + 1
                 elif now[4] > Em:
                     print("Mai este pana la pauze")
                     this.index = i + 1
+            now = time.localtime()
             if now[3] >= Sh and now[4] >= Em:
+                # resetare
                 this.index = 0
-        print(this.index)
-        print(this.pauze[this.index])
 
     # Verifica in fiecare minut daca este momentul in care sa dea drumul la muzica
     # Necesita inbunatatiri pt a da un semnal sonor pt sfarsitul de ora
     def start(this):
-        sys.stdout.write("Player started")
+        sys.stdout.write("Player started \n")
         sys.stdout.flush()
-
-        this.__syncTimeline()
         now = time.localtime()
         timeout = 60 - now[5]
-        print(timeout)
         # time.sleep(timeout)
+        this.__syncTimeline()
         while True:
             now = time.localtime()
-            # print(this.index)
             Sh, Sm, Eh, Em, now = this.__getBreaks(this.pauze[this.index])
             if now[3] == Sh and now[4] == Sm:
                 this.__initPlayer()
             # time.sleep(60)
 
 
-player = MusicPlayer(pauze, f"{scriptPath}/music")
+player = MusicPlayer(pauze, os.path.join(scriptPath, "../music"))
 player.start()

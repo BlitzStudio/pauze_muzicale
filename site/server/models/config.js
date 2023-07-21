@@ -17,6 +17,13 @@ const configSchema = new mongoose.Schema({
     timeTable: {
         type: [String],
         require: true
+    },
+    player: {
+        isPlaying: {
+            type: Boolean,
+            default: false
+        },
+        track: String
     }
 })
 

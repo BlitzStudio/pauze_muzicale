@@ -17,7 +17,7 @@ export default function Config() {
         <ColapseMenu title="Utilitati">
           <Utils />
         </ColapseMenu>
-        <ColapseMenu title="Configurari globale"></ColapseMenu>
+        {/* <ColapseMenu title="Configurari globale"></ColapseMenu> */}
       </div>
     </main>
   );
