@@ -15,8 +15,6 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client.pauzeMuzicale
 pauze = db["site_configs"].find_one()["timeTable"]
 
-print(pauze)
-
 
 class MusicPlayer:
     def __init__(this, jsonData, musicPath: str):
@@ -76,8 +74,9 @@ class MusicPlayer:
             print(this.index)
             print(len(this.pauze) - 1)
             this.index += 1
+            print(this.index)
         else:
-            # print("Resetare")
+            print("Resetare")
             this.index = 0
 
     # In baza vectorului functia detecteaza care este urmatoarea pauza
@@ -110,7 +109,9 @@ class MusicPlayer:
     # Verifica in fiecare minut daca este momentul in care sa dea drumul la muzica
     # Necesita inbunatatiri pt a da un semnal sonor pt sfarsitul de ora
     def start(this):
-        print(this.pauze)
+        sys.stdout.write("Player started")
+        sys.stdout.flush()
+
         this.__syncTimeline()
         now = time.localtime()
         timeout = 60 - now[5]
