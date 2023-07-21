@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import Spinner from "../../../components/Spinner";
@@ -90,7 +92,18 @@ export default function TimeTableForm() {
           },
         }
       )
-      .then((data) => {})
+      .then((data) => {
+        toast.info("Orarul a fost actualizat", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      })
       .catch((e) => console.log(e));
     e.preventDefault();
   }
