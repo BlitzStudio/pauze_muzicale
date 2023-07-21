@@ -2,3 +2,4 @@
 __pychache__
 .idea
 site/server/tools/old_generateJwt.js
+.vscode
