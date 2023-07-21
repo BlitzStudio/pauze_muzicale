@@ -4,6 +4,4 @@ dist
 secrets
 _old
 **/ffmpeg/**
- 
-
 *.wav
