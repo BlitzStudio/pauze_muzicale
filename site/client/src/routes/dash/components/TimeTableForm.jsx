@@ -67,7 +67,7 @@ export default function TimeTableForm() {
     return array.map((element) => {
       const [Sh, Sm] = element.time.split(":");
       let Eh = parseInt(Sh);
-      let Em = parseInt(Sm) + element.durata;
+      let Em = parseInt(Sm) + parseInt(element.durata);
       if (Em >= 60) {
         Eh += 1;
         Em = (Em % 60) / 10 > 1 ? Em % 60 : `0${Em % 60}`;
@@ -90,6 +90,7 @@ export default function TimeTableForm() {
           },
         }
       )
+      .then((data) => {})
       .catch((e) => console.log(e));
     e.preventDefault();
   }
