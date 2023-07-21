@@ -5,7 +5,7 @@ import Music from '../models/musicTrack.js'
 
 let YD = new Downloader({
     ffmpegPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloader\\ffmpeg\\bin\\ffmpeg.exe", // FFmpeg binary location
-    outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\music", // Output file location (default: the home directory)
+    outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloads", // Output file location (default: the home directory)
     youtubeVideoQuality: "highestaudio", // Desired video quality (default: highestaudio)
     queueParallelism: 1, // Download parallelism (default: 1)
     progressTimeout: 2000, // Interval in ms for the progress reports (default: 1000)

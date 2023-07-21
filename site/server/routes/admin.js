@@ -3,6 +3,7 @@ import { AsyncHandler, CustomError, errorHandler } from '../middleware/errorHand
 import isAuth from '../middleware/isAuth.js'
 import SiteConfig from '../models/config.js'
 import { startPlayer, stopPlayer } from '../player/index.js'
+import ML, { isRunning } from '../ml/index.js'
 
 const router = Router()
 
@@ -40,6 +41,14 @@ router.get("/stopplayer", (req, res) => {
 router.get("/playerstatus", async (req, res) => {
     const configs = await SiteConfig.findOne()
     res.send(configs.player.isPlaying)
+})
+
+router.get("/startfilter", (req, res) => {
+    ML()
+})
+
+router.get("/filterstatus", (req, res) => {
+    res.send(isRunning)
 })
 
 export default router
