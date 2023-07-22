@@ -5,7 +5,7 @@ import jwt from "jwt-decode";
 export default function useRefreshAccessToken() {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+
   const refreshToken = async function () {
     const response = await axios
       .get("/refresh", {

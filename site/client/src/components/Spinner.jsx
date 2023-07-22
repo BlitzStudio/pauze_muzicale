@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Spinner() {
+export default function Spinner({ className = "w-10" }) {
   return (
     <div className="flex justify-center text-2xl font-semibold text-richBlack">
       <svg
-        className="ml-1 mr-3 h-auto w-10 animate-spin text-slate-600 dark:text-slate-100"
+        className={`"ml-1 mr-3 h-auto ${className} dark:text-slate-100" animate-spin text-slate-600`}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

@@ -104,7 +104,10 @@ export default function TimeTableForm() {
           theme: "light",
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        console.log("Not found");
+      });
     e.preventDefault();
   }
 
@@ -118,6 +121,7 @@ export default function TimeTableForm() {
         },
       })
       .then((response) => {
+        console.log(response);
         const timeTable = response.data;
         let state = timeTable.map((element) => {
           const [start, end] = element.split("_");
@@ -140,7 +144,14 @@ export default function TimeTableForm() {
         SetIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        SetIsLoading(false);
+        setFormInputs([
+          {
+            time: "",
+            durata: 10,
+          },
+        ]);
+        initialForm.current = [{ time: "", durata: 10 }];
       });
     return () => {
       controller.abort();
@@ -173,6 +184,8 @@ export default function TimeTableForm() {
                 type="number"
                 name="durata"
                 id=""
+                min={0}
+                max={100}
                 value={data.durata}
                 placeholder="Pauza 1"
                 onChange={(e) => handelChange(e, index)}

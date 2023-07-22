@@ -1,5 +1,6 @@
 import { spawn } from 'child_process'
 import { resolve } from 'path'
+import { restartPlayer } from '../player/index.js'
 
 const __dirname = resolve()
 let isRunning = false
@@ -19,6 +20,7 @@ const startMl = async function () {
 
     ml.on('close', (code) => {
         isRunning = false
+        restartPlayer()
         console.log(`child process exited with code ${code}`);
     });
 

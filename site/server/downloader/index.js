@@ -4,8 +4,9 @@ import db from '../config/connectDb.js'
 import Music from '../models/musicTrack.js'
 
 let YD = new Downloader({
-    ffmpegPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloader\\ffmpeg\\bin\\ffmpeg.exe", // FFmpeg binary location
-    outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloads", // Output file location (default: the home directory)
+    ffmpegPath: process.env.FFMPEG_PATH, // FFmpeg binary location
+    // outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloads", // Output file location (default: the home directory)
+    outputPath: "../downloads",
     youtubeVideoQuality: "highestaudio", // Desired video quality (default: highestaudio)
     queueParallelism: 1, // Download parallelism (default: 1)
     progressTimeout: 2000, // Interval in ms for the progress reports (default: 1000)

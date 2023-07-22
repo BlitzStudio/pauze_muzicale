@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { AsyncHandler, CustomError, errorHandler } from '../middleware/errorHandler.js'
 import isAuth from '../middleware/isAuth.js'
 import SiteConfig from '../models/config.js'
-import { startPlayer, stopPlayer } from '../player/index.js'
+import { startPlayer, stopPlayer, restartPlayer } from '../player/index.js'
 import ML, { isRunning } from '../ml/index.js'
 
 const router = Router()
@@ -14,18 +14,33 @@ router.post("/time", async (req, res) => {
     if (req.user.role != "admin") {
         return res.sendStatus(401)
     }
-    console.log(timeTable)
+
     const site = await SiteConfig.findOne({})
-    site.timeTable = timeTable
-    await site.save()
-    res.sendStatus(200)
+    if (site) {
+        site.timeTable = timeTable
+        await site.save()
+        restartPlayer()
+        res.sendStatus(200)
+    } else {
+        const site = new SiteConfig({
+            timeTable: timeTable
+        })
+        await site.save()
+        restartPlayer()
+        res.sendStatus(200)
+    }
 })
+
 router.get("/time", async (req, res) => {
     if (req.user.role != "admin") {
         return res.sendStatus(401)
     }
     const site = await SiteConfig.findOne({})
-    res.status(200).json(site.timeTable)
+    if (site?.timeTable.length && site) {
+        res.status(200).json(site.timeTable)
+    } else {
+        res.sendStatus(404)
+    }
 })
 
 router.get("/startplayer", (req, res) => {
@@ -40,7 +55,12 @@ router.get("/stopplayer", (req, res) => {
 
 router.get("/playerstatus", async (req, res) => {
     const configs = await SiteConfig.findOne()
-    res.send(configs.player.isPlaying)
+    console.log(configs?.player.isPlaying)
+    if (configs?.player.isPlaying && configs) {
+        res.send(configs.player.isPlaying)
+    } else {
+        res.send(false)
+    }
 })
 
 router.get("/startfilter", (req, res) => {
