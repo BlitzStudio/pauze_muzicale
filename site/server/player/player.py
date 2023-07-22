@@ -10,8 +10,8 @@ from pydub.playback import play
 from pymongo import MongoClient
 
 host = os.environ["host"]
-db =os.environ["db"]
- 
+db = os.environ["db"]
+
 
 scriptPath = os.path.dirname(os.path.abspath(__file__))
 client = MongoClient(host)
@@ -36,6 +36,8 @@ class MusicPlayer:
         start, end = pauza.split("_")
         Sh, Sm = start.split(":")
         Eh, Em = end.split(":")
+        if int(Em) == 0:
+            Em = "60"
         return [int(Sh), int(Sm), int(Eh), int(Em), now]
 
     # Selecteaza o piesa random din nr lor total
