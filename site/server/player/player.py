@@ -9,10 +9,13 @@ from pydub import AudioSegment
 from pydub.playback import play
 from pymongo import MongoClient
 
+host = os.environ["host"]
+db =os.environ["db"]
+ 
 
 scriptPath = os.path.dirname(os.path.abspath(__file__))
-client = MongoClient("mongodb://localhost:27017/")
-db = client.pauzeMuzicale
+client = MongoClient(host)
+db = client[db]
 pauze = db["site_configs"].find_one()["timeTable"]
 
 

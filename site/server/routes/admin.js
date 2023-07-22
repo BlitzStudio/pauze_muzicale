@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { AsyncHandler, CustomError, errorHandler } from '../middleware/errorHandler.js'
 import isAuth from '../middleware/isAuth.js'
 import SiteConfig from '../models/config.js'
-import { startPlayer, stopPlayer, restartPlayer } from '../player/index.js'
+import { startPlayer, stopPlayer, restartPlayer, isPlaying } from '../player/index.js'
 import ML, { isRunning } from '../ml/index.js'
 
 const router = Router()
@@ -54,13 +54,7 @@ router.get("/stopplayer", (req, res) => {
 })
 
 router.get("/playerstatus", async (req, res) => {
-    const configs = await SiteConfig.findOne()
-    console.log(configs?.player.isPlaying)
-    if (configs?.player.isPlaying && configs) {
-        res.send(configs.player.isPlaying)
-    } else {
-        res.send(false)
-    }
+    res.send(isPlaying)
 })
 
 router.get("/startfilter", (req, res) => {
