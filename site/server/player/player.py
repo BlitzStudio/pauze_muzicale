@@ -115,7 +115,7 @@ class MusicPlayer:
         sys.stdout.write("Player started \n")
         sys.stdout.flush()
         now = time.localtime()
-        ringPath = this.musicPath + "/" + "ring.wav"
+        ringPath = os.path.join(this.musicPath, "..", "ring/ring.wav")
         timeout = 60 - now[5]
         # time.sleep(timeout)
         this.__syncTimeline()
