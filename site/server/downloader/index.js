@@ -6,7 +6,7 @@ import Music from '../models/musicTrack.js'
 let YD = new Downloader({
     ffmpegPath: process.env.FFMPEG_PATH, // FFmpeg binary location
     // outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloads", // Output file location (default: the home directory)
-    outputPath: "../downloads",
+    outputPath: "C:\\Users\\ionut\\Desktop\\pauze_muzicale\\site\\server\\downloads",
     youtubeVideoQuality: "highestaudio", // Desired video quality (default: highestaudio)
     queueParallelism: 1, // Download parallelism (default: 1)
     progressTimeout: 2000, // Interval in ms for the progress reports (default: 1000)
@@ -15,7 +15,6 @@ let YD = new Downloader({
 })
 const run = async function () {
     const ids = (await Music.find({ status: 0 }, null, { limit: 5 })).map(ele => ele.ytId)
-    console.log(ids)
     if (!ids) {
         process.exit(1)
     }

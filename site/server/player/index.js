@@ -37,13 +37,14 @@ const startPlayer = async function () {
 
 }
 const stopPlayer = async function () {
-    if (isPlaying) {
+    if (isPlaying == true) {
         player.kill()
         isPlaying = false
     }
 }
 const restartPlayer = async function () {
-    if (isPlaying) {
+    console.log(isPlaying)
+    if (isPlaying == true) {
         stopPlayer()
         startPlayer()
     }
