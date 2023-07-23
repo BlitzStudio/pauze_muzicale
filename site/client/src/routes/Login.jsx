@@ -16,7 +16,7 @@ export default function Login() {
             Login
           </h1>
           <p className="font-semibold leading-tight text-[#3a0ca3]/80  dark:text-white">
-            Pentru a folosi acest serviciu v a trebui sa folosesti contul
+            Pentru a folosi acest serviciu va trebui sa folosesti contul
             incredintat de catre scoala ta.
           </p>
         </div>
