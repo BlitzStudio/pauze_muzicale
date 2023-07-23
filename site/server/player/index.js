@@ -14,13 +14,7 @@ const db = db_url.substring(db_url.lastIndexOf("/") + 1)
 
 
 const startPlayer = async function () {
-    console.log("From start")
-    console.log(isPlaying)
     isPlaying = true
-    console.log("From start")
-    console.log(isPlaying)
-
-
     player = spawn("python", [`${__dirname}/player/player.py`], {
         env: {
             host: host,
@@ -43,15 +37,10 @@ const startPlayer = async function () {
 
 }
 const stopPlayer = async function () {
-    console.log("From stop")
-    console.log(isPlaying)
     if (isPlaying) {
         player.kill()
         isPlaying = false
     }
-    console.log("From stop")
-    console.log(isPlaying)
-
 }
 const restartPlayer = async function () {
     if (isPlaying) {

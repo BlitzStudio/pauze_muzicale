@@ -62,7 +62,12 @@ class MusicPlayer:
     def __initPlayer(this, duration=0):
         Sh, Sm, Eh, Em, now = this.__getBreaks(this.pauze[this.index])
         if not duration:
-            duration = (Em - now[4]) * 60000
+            if now[4] >= Sm and Sh < Eh:
+                print("Pauza extra mare initializare normala")
+                duration = ((60 - Sm) + (Eh - Sh - 1) * 60 + Em) * 60000
+                this.__initPlayer(duration)
+            else:
+                duration = (Em - now[4]) * 60000
         while duration > 0:
             track = this.__randomTrack()
             audio = MP3(track)
@@ -89,9 +94,13 @@ class MusicPlayer:
             if now[3] == Sh:
                 if now[4] < Sm:
                     this.index = i
-                elif now[4] >= Sm and now[4] < Em:
+                elif now[4] >= Sm and now[4] < Em and Sh == Eh:
                     print("Suntem in pauza")
                     duration = (Em - now[4]) * 60000
+                    this.__initPlayer(duration)
+                elif now[4] >= Sm and Sh < Eh:
+                    print("Pauza extra mare")
+                    duration = ((60 - now[4]) + (Eh - now[3] - 1) * 60 + Em) * 60000
                     this.__initPlayer(duration)
                 elif now[4] > Em:
                     print("Mai este pana la pauze")

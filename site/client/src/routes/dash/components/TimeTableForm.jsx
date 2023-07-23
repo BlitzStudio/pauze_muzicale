@@ -30,6 +30,7 @@ export default function TimeTableForm() {
 
     data[index][e.target.name] = e.target.value;
     setFormInputs(data);
+    console.log(generateTimetable(data));
   }
 
   // adauga un nou grup de inputuri
@@ -70,9 +71,11 @@ export default function TimeTableForm() {
       const [Sh, Sm] = element.time.split(":");
       let Eh = parseInt(Sh);
       let Em = parseInt(Sm) + parseInt(element.durata);
+      console.log();
       if (Em >= 60) {
-        Eh += 1;
-        Em = (Em % 60) / 10 > 1 ? Em % 60 : `0${Em % 60}`;
+        Eh += Math.floor(Em / 60);
+
+        Em = (Em % 60) / 10 >= 1 ? Em % 60 : `0${Em % 60}`;
       }
       return `${Sh}:${Sm}_${Eh}:${Em}`;
     });
@@ -128,10 +131,10 @@ export default function TimeTableForm() {
           const [Sh, Sm] = start.split(":").map((int) => parseInt(int));
           const [Eh, Em] = end.split(":").map((int) => parseInt(int));
           let durata;
-          if (Em > Sm) {
+          if (Em > Sm && Sh == Eh) {
             durata = Em - Sm;
-          } else {
-            durata = 60 - (Sm - Em);
+          } else if (Sh < Eh) {
+            durata = (Eh - Sh - 1) * 60 + (60 - Sm) + Em;
           }
 
           return {
