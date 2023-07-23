@@ -65,7 +65,6 @@ class MusicPlayer:
             if now[4] >= Sm and Sh < Eh:
                 print("Pauza extra mare initializare normala")
                 duration = ((60 - Sm) + (Eh - Sh - 1) * 60 + Em) * 60000
-                this.__initPlayer(duration)
             else:
                 duration = (Em - now[4]) * 60000
         while duration > 0:
@@ -116,6 +115,7 @@ class MusicPlayer:
         sys.stdout.write("Player started \n")
         sys.stdout.flush()
         now = time.localtime()
+        ringPath = this.musicPath + "/" + "ring.wav"
         timeout = 60 - now[5]
         # time.sleep(timeout)
         this.__syncTimeline()
@@ -124,6 +124,8 @@ class MusicPlayer:
             Sh, Sm, Eh, Em, now = this.__getBreaks(this.pauze[this.index])
             if now[3] == Sh and now[4] == Sm:
                 this.__initPlayer()
+            elif now[3] == Sh and now[4] + 1 == Sm and now[5] == 0:
+                this.Play(ringPath, 3000)
             # time.sleep(60)
 
 
