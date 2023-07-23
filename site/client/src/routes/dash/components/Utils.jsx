@@ -85,6 +85,7 @@ export default function Utils() {
         },
       })
       .then((response) => {
+        console.log(response.data);
         setFilter(response.data);
       });
   }, []);

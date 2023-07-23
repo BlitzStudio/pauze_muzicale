@@ -6,7 +6,7 @@ const __dirname = resolve()
 console.log(__dirname);
 
 let player
-let isPlaying = false
+let isPlaying
 const db_url = process.env.MONGO_URL
 const host = db_url.substring(0, db_url.lastIndexOf("/"))
 const db = db_url.substring(db_url.lastIndexOf("/") + 1)
@@ -14,6 +14,13 @@ const db = db_url.substring(db_url.lastIndexOf("/") + 1)
 
 
 const startPlayer = async function () {
+    console.log("From start")
+    console.log(isPlaying)
+    isPlaying = true
+    console.log("From start")
+    console.log(isPlaying)
+
+
     player = spawn("python", [`${__dirname}/player/player.py`], {
         env: {
             host: host,
@@ -21,7 +28,6 @@ const startPlayer = async function () {
             FFMPEG_PATH: process.env.FFMPEG_PATH
         }
     })
-    isPlaying = true
     player.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
     });
@@ -31,21 +37,31 @@ const startPlayer = async function () {
     });
 
     player.on('close', (code) => {
-        isPlaying = false
+
         console.log(`child process exited with code ${code}`);
     });
 
 }
 const stopPlayer = async function () {
+    console.log("From stop")
+    console.log(isPlaying)
     if (isPlaying) {
         player.kill()
+        isPlaying = false
     }
+    console.log("From stop")
+    console.log(isPlaying)
+
 }
 const restartPlayer = async function () {
     if (isPlaying) {
-        await stopPlayer()
-        await startPlayer()
+        stopPlayer()
+        startPlayer()
     }
+    isPlaying = true
+}
+const getPlayerStatus = function () {
+    return isPlaying
 }
 
-export { startPlayer, stopPlayer, restartPlayer, isPlaying }
+export { startPlayer, stopPlayer, restartPlayer, getPlayerStatus }

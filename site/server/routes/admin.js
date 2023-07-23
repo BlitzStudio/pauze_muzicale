@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { AsyncHandler, CustomError, errorHandler } from '../middleware/errorHandler.js'
 import isAuth from '../middleware/isAuth.js'
 import SiteConfig from '../models/config.js'
-import { startPlayer, stopPlayer, restartPlayer, isPlaying } from '../player/index.js'
+import { startPlayer, stopPlayer, restartPlayer, getPlayerStatus } from '../player/index.js'
 import ML, { isRunning } from '../ml/index.js'
 
 const router = Router()
@@ -19,16 +19,16 @@ router.post("/time", async (req, res) => {
     if (site) {
         site.timeTable = timeTable
         await site.save()
-        restartPlayer()
-        res.sendStatus(200)
+
     } else {
         const site = new SiteConfig({
             timeTable: timeTable
         })
         await site.save()
-        restartPlayer()
-        res.sendStatus(200)
+
     }
+    restartPlayer()
+    res.sendStatus(200)
 })
 
 router.get("/time", async (req, res) => {
@@ -54,7 +54,14 @@ router.get("/stopplayer", (req, res) => {
 })
 
 router.get("/playerstatus", async (req, res) => {
-    res.send(isPlaying)
+    const status = getPlayerStatus()
+    console.log("Route status")
+    console.log(status)
+    res.setHeader('Surrogate-Control', 'no-store');
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Expires', '0');
+
+    res.send(status)
 })
 
 router.get("/startfilter", (req, res) => {
