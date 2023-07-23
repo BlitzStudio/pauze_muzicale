@@ -18,7 +18,9 @@ export default function FormSvg({ width, height, className, children }) {
             navigate("/login");
           })
           .catch((err) => {
-            console.log(err);
+            setUser({});
+            localStorage.setItem("isLoggedIn", false);
+            navigate("/login");
           });
       }}
     >

@@ -13,7 +13,5 @@ export default defineConfig({
     strictPort: true,
     open: "/",
   },
-  build: {
-    outDir: "../server/dist"
-  }
+
 });

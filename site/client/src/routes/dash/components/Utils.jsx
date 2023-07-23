@@ -72,7 +72,7 @@ export default function Utils() {
     axios
       .get("/admin/playerstatus", {
         headers: {
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${user?.accessToken}`,
         },
       })
       .then((response) => {
@@ -81,7 +81,7 @@ export default function Utils() {
     axios
       .get("/admin/filterstatus", {
         headers: {
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${user?.accessToken}`,
         },
       })
       .then((response) => {

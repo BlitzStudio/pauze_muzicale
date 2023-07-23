@@ -45,14 +45,14 @@ export default function nav() {
             <p className="hidden sm:inline">Recomanda melodii</p>
           </NavLink>
         </NavItem>
-        {user?.role == "admin" && (
-          <NavItem>
-            <NavLink to="config" className={NavLinkStyle}>
-              <TuneSvg className="h-auto w-[32px]" />
-              <p className="hidden sm:inline">Configurare</p>
-            </NavLink>
-          </NavItem>
-        )}
+
+        <NavItem>
+          <NavLink to="config" className={NavLinkStyle}>
+            <TuneSvg className="h-auto w-[32px]" />
+            <p className="hidden sm:inline">Configurare</p>
+          </NavLink>
+        </NavItem>
+
         <NavItem>
           <div className="flex items-center justify-center rounded-full p-1 sm:justify-start">
             <LogoutSvg

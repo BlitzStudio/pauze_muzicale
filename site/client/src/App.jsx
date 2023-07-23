@@ -17,9 +17,8 @@ const App = function (props) {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route element={<IsAuth />}>
-          <Route path="dash/*" element={<Dash />} />
-        </Route>
+
+        <Route path="dash/*" element={<Dash />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

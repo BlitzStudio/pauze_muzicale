@@ -16,9 +16,9 @@ export default function Dash() {
       <Routes>
         <Route path="account" element={<Account />} />
         <Route path="songs" element={<SongForm />} />
-        <Route element={<IsAdmin />}>
-          <Route path="config" element={<Config />} />
-        </Route>
+
+        <Route path="config" element={<Config />} />
+
         <Route
           path=""
           element={

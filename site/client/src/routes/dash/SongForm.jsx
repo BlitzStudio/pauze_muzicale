@@ -123,23 +123,10 @@ export default function SongForm() {
     }
 
     if (formIsValid) {
-      axios
-        .post(
-          "/songs",
-          {
-            ids: form.map((link) => {
-              return link.id;
-            }),
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${user.accessToken}`,
-            },
-          }
-        )
-        .then((response) => {
-          setUser({ ...jwt(response.data), accessToken: response.data });
-        });
+      setUser((prevState) => {
+        return { ...prevState, submittedCount: form.length };
+      });
+
       // reseteaza inputurile
       setForm([{ value: "", isValid: false, id: "" }]);
     } else {

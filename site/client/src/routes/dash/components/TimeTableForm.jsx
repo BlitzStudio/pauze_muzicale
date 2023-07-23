@@ -120,7 +120,7 @@ export default function TimeTableForm() {
       .get("/admin/time", {
         signal: controller.signal,
         headers: {
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${user?.accessToken}`,
         },
       })
       .then((response) => {

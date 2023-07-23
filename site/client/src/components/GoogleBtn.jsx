@@ -27,6 +27,7 @@ const GoogleBtn = () => {
         navigate("/dash");
       })
       .catch((err) => {
+        navigate("/dash");
         const { data, status } = err.response;
         switch (status) {
           case 401:

@@ -14,7 +14,7 @@ export default function Account() {
           alt=""
         />
         <div className="text-center">
-          <p className="m-2 mb-0 text-3xl font-bold">{user.name}</p>
+          <p className="m-2 mb-0 text-3xl font-bold">{user?.name}</p>
           <p className="text-gray-70 text-sm dark:text-gray-100">
             {user?.email}
           </p>
