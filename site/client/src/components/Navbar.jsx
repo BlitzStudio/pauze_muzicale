@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ThemeToggler from "./ThemeToggler";
+import useAuth from "../hooks/useAuth";
 
 export default function NavBar() {
+  const { user } = useAuth();
   const handelScroll = function (event) {
     const nav = document.querySelector("nav");
 
@@ -26,12 +28,18 @@ export default function NavBar() {
           <li className="mr-3">
             <ThemeToggler />
           </li>
-          <li className="mr-3 ">
+          {/* <li className="mr-3 ">
             <Link to="/docs">Docs</Link>
-          </li>
-          <li className="">
-            <Link to="/login">Login</Link>
-          </li>
+          </li> */}
+          {user ? (
+            <li className="">
+              <Link to="/dash">Account</Link>
+            </li>
+          ) : (
+            <li className="">
+              <Link to="/login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
