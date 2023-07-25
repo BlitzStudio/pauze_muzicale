@@ -62,7 +62,7 @@ class MusicPlayer:
     def __initPlayer(this, duration=0):
         Sh, Sm, Eh, Em, now = this.__getBreaks(this.pauze[this.index])
         if not duration:
-            if now[4] >= Sm and Sh < Eh:
+            if Sh < Eh and (Em != 60 or Eh - Sh > 1):
                 print("Pauza extra mare initializare normala")
                 duration = ((60 - Sm) + (Eh - Sh - 1) * 60 + Em) * 60000
             else:
